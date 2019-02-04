@@ -11,3 +11,8 @@ Osa1 -tehtävät löytyy kansiosta viikko1.
 * [Kurssitiedot -tehtävä](https://github.com/lottajylha/fullstack/tree/master/viikko1/kurssitiedot)
 * [Unicafe -tehtävä](https://github.com/lottajylha/fullstack/tree/master/viikko1/unicafe)
 * [Anekdootit -tehtävä](https://github.com/lottajylha/fullstack/tree/master/viikko1/anekdootit)
+
+## Osa 2
+Osa2 -tehtävät löytyy kansiosta viikko2.
+* [Kurssitiedot -tehtävä](https://github.com/lottajylha/fullstack/tree/master/viikko2/kurssitiedot)
+* [Puhelinluettelo -tehtävä](https://github.com/lottajylha/fullstack/tree/master/viikko2/puhelinluettelo)
