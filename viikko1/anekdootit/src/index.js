@@ -5,7 +5,6 @@ const App = (props) => {
  const [selected, setSelected] = useState(0)
  const [votes, setVotes] = useState(new Array(5).fill(0))
  const [popular, setPopular] = useState(0)
- const [votesForPopular, setVotesForPopular] = useState(0)
 
  const setValue = (value) => {
    return () => {
