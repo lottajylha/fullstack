@@ -13,14 +13,12 @@ const update = (id, newObject) => {
   return axios.put(`${baseUrl}/${id}`, newObject)
 }
 
-const del = (id) => {
-    return axios.delete(`${baseUrl}/${id}`)
-    console.log('poistetaan')
+const remove = (id) => {
+  const promise = axios.delete(`${baseUrl}/${id}`)
+
+  return promise.then(response => response.data)
 }
 
-export default { 
-  getAll: getAll, 
-  create: create, 
-  update: update,
-  del: del
+export default {
+  getAll, create, remove
 }

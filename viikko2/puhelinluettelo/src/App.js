@@ -7,7 +7,10 @@ const App = () => {
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [names, setNames] = useState([])
-  const [deleteId, setDelete] = useState('')
+  const [notification, setNotification] = useState({
+    message: null
+  })
+
 
   useEffect(() => {
     personService
@@ -17,6 +20,12 @@ const App = () => {
       })
   }, [])
 
+  const notify = (message, type='success') => {
+    setNotification({ message, type })
+    setTimeout(() => setNotification({ message: null }), 10000)
+  }
+ 
+
   const handleNewName = (event) => {
     setNewName(event.target.value)
   }
@@ -25,16 +34,22 @@ const App = () => {
     setNewNumber(event.target.value)
   }
 
-  const handleDelete = (event) => {
-    setDelete(event.target.value)
-    console.log(deleteId)
+  const deletePerson = (id) => {
+    const person = persons.find(p => p.id === id)
+    const ok = window.confirm(`Poistetaanko ${person.name}`)
+    if (ok) {
+      personService
+        .remove(id)
+        .then(() => {
+          setPersons(persons.filter(p => p.id !== id))
+        })
+      notify(`Poistettiin ${person.name}`)
+    }
   }
 
-  const deletePerson = (event) => {
-    event.preventDefault()
-  }
 
-const addPerson = (event) => {
+
+  const addPerson = (event) => {
     event.preventDefault()
     var index = names.indexOf(newName)
     if (index === -1) {
@@ -57,13 +72,13 @@ const addPerson = (event) => {
     setNewNumber('')
     setNewName('')
   }
-  console.log(deleteId)
+  
   return (
     <div>
       <h2>Puhelinluettelo</h2>
       <NewPerson addPerson={addPerson} newName={newName} handleNewName={handleNewName} newNumber={newNumber} handleNewNumber={handleNewNumber}/>
       <h2>Numerot</h2>
-      <Persons persons={persons} handleDelete={handleDelete}/>
+      <Persons persons={persons} deletePerson={deletePerson}/>
     </div>
   )
 
@@ -71,22 +86,20 @@ const addPerson = (event) => {
 
 const Persons = (props) => {
   const rows = () => props.persons.map(person =>
-      <Person key={person.id} name={person.name} number={person.number} id={props.id}/>
+    <Person name={person.name} number={person.number} id={person.id} deletePerson={props.deletePerson}/>
   )
   return (
-    <div> {rows()} </div>
+    <div>
+      {rows()}
+    </div>
   )
 }
 
 const Person = (props) => {
   return (
     <div>
-    <p>{props.name} {props.number}
-    <form onSubmit={props.handleDelete}>
-    <output value={props.id}/>
-    <button type="submit">poista</button>
-    </form>
-    </p>
+    {props.name} {props.number}
+    <button onClick={()=>props.deletePerson(props.id)}>poista</button>
     </div>
   )
 }
