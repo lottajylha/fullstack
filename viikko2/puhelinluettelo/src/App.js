@@ -1,37 +1,132 @@
 import React, { useState, useEffect } from 'react'
-import axios from 'axios'
 import personService from './services/persons'
 
+const Notification = ({ notification }) => {
+  if (notification.message === null) {
+    return null
+  }
+
+  const style = {
+    color: notification.type === 'error' ? 'red' : 'green',
+    background: 'lightgrey',
+    fontSize: 20,
+    borderStyle: 'solid',
+    borderRadius: 5,
+    padding: 10,
+    marginBottom: 10,
+  }
+
+  return (
+    <div style={style}>
+      {notification.message}
+    </div>
+  )
+}
+
+const Filter = (props) => {
+  return (
+    <div>
+      rajaa näytettäviä
+      <input onChange={props.handleChange} value={props.value} />
+    </div>
+  )
+}
+
+const Persons = (props) => {
+  return (
+    props.persons.map(p =>
+      <div key={p.name}>
+        {p.name} {p.number} <button onClick={()=>props.deletePerson(p.id)}>poista</button>
+      </div>
+    )
+  )
+}
+
+const PersonForm = (props) => {
+  return (
+    <form onSubmit={props.handleSubmit}>
+      <div>
+        nimi: <input onChange={props.handleNameChange} value={props.newName} />
+      </div>
+      <div>
+        numero: <input onChange={props.handleNumberChange} value={props.newNumber} />
+      </div>
+      <div>
+        <button type="submit">lisää</button>
+      </div>
+    </form>
+  )
+}
+
 const App = () => {
-  const [persons, setPersons] = useState([]) 
+  const [persons, setPersons] = useState([])
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
-  const [names, setNames] = useState([])
+  const [filter, setFilter] = useState('')
   const [notification, setNotification] = useState({
     message: null
   })
 
-
   useEffect(() => {
-    personService
-      .getAll()
-      .then(response => {
-        setPersons(response.data)
+    personService.getAll()
+      .then(data => {
+        setPersons(data)
       })
   }, [])
+
+  const handleNameChange = (event) => setNewName(event.target.value)
+  const handleNumberChange = (event) => setNewNumber(event.target.value)
+  const handleFilterChange = (event) => setFilter(event.target.value)
 
   const notify = (message, type='success') => {
     setNotification({ message, type })
     setTimeout(() => setNotification({ message: null }), 10000)
   }
  
+  const handleSubmit = (event) => {
+    event.preventDefault()
 
-  const handleNewName = (event) => {
-    setNewName(event.target.value)
-  }
+    const existingPerson = persons.find(p => p.name === newName)
 
-  const handleNewNumber = (event) => {
-    setNewNumber(event.target.value)
+    if (existingPerson) {
+      const ok = window.confirm(`${newName} on jo luettelossa, korvataanko vanha numero uudella`)
+      
+
+      
+      if (ok) {
+        personService
+          .replace({
+            ...existingPerson,
+            number: newNumber
+          })
+          .then(replacedPerson => {
+            setPersons(persons.map(p => p.name === newName ? replacedPerson : p))
+            setNewName('')
+            setNewNumber('')
+            notify(`Henkilön ${newName} numero muutettu`)
+          })
+          /*
+          .catch(() => {
+            setPersons(persons.filter(p => p.name !== newName))
+            notify(`Henkilön ${newName} oli jo poistettu`, 'error')
+          })
+          */
+      }
+
+      return
+    } 
+     
+  personService
+      .create({
+        name: newName,
+        number: newNumber
+      })
+      .then(createdPerson => {
+        setPersons(persons.concat(createdPerson))
+        setNewName('')
+        setNewNumber('')
+        notify(`Lisättiin ${createdPerson.name}`)
+      })
   }
 
   const deletePerson = (id) => {
@@ -47,81 +142,34 @@ const App = () => {
     }
   }
 
+  const personsToShow = filter.length === 0
+    ? persons 
+    : persons.filter(p => p.name.toLowerCase().includes(filter.toLowerCase()) )
 
-
-  const addPerson = (event) => {
-    event.preventDefault()
-    var index = names.indexOf(newName)
-    if (index === -1) {
-      const personObject = {
-        name: newName,
-        number: newNumber,
-        id: persons.length + 1
-      }
-      setPersons(persons.concat(personObject))
-      setNames(names.concat(personObject.name))
-      personService
-        .create(personObject)
-        .then(response => {
-          setPersons(persons.concat(response.data))
-          
-        })
-    } else {
-      alert(`${newName} on jo luettelossa`)
-    }
-    setNewNumber('')
-    setNewName('')
-  }
-  
   return (
     <div>
       <h2>Puhelinluettelo</h2>
-      <NewPerson addPerson={addPerson} newName={newName} handleNewName={handleNewName} newNumber={newNumber} handleNewNumber={handleNewNumber}/>
-      <h2>Numerot</h2>
-      <Persons persons={persons} deletePerson={deletePerson}/>
+
+      <Notification notification={notification} />
+
+      <Filter handleChange={handleFilterChange} value={filter} />
+
+      <h3>lisää uusi</h3>
+
+      <PersonForm 
+        handleNameChange={handleNameChange}
+        handleNumberChange={handleNumberChange}
+        handleSubmit={handleSubmit}
+        newName={newName}
+        newNumber={newNumber}
+      />
+
+      <h3>Numerot</h3>
+
+      <Persons persons={personsToShow} deletePerson={deletePerson} />
     </div>
   )
 
-}
-
-const Persons = (props) => {
-  const rows = () => props.persons.map(person =>
-    <Person name={person.name} number={person.number} id={person.id} deletePerson={props.deletePerson}/>
-  )
-  return (
-    <div>
-      {rows()}
-    </div>
-  )
-}
-
-const Person = (props) => {
-  return (
-    <div>
-    {props.name} {props.number}
-    <button onClick={()=>props.deletePerson(props.id)}>poista</button>
-    </div>
-  )
-}
-
-const NewPerson = (props) => {
-  return (
-      <form onSubmit={props.addPerson}>
-        <div>
-          nimi: <input value={props.newName} 
-          onChange={props.handleNewName}
-          />
-        </div>
-        <div>
-          numero: <input value={props.newNumber} 
-          onChange={props.handleNewNumber}
-          />
-        </div>
-        <div>
-          <button type="submit">lisää</button>
-        </div>
-      </form>
-  )
 }
 
 export default App
