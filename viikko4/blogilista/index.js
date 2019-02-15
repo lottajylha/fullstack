@@ -26,7 +26,7 @@ const blogSchema = mongoose.Schema({
 
 const Blog = mongoose.model('Blog', blogSchema)
 
-const mongoUrl = 'mongodb+srv://Lotta:Lotta24@cluster0-tmhku.mongodb.net/bloglist-db?retryWrites=true'
+const mongoUrl = 'mongodb+srv://Lotta:salasana@cluster0-tmhku.mongodb.net/bloglist-db?retryWrites=true'
 mongoose.connect(mongoUrl, { useNewUrlParser: true })
 
 app.use(cors())
