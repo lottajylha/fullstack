@@ -16,6 +16,7 @@ mongoose.connect(url, { useNewUrlParser: true })
   })
 
 const blogSchema = mongoose.Schema({
+    id: String,
     title: String,
     author: String,
     url: String,
