@@ -1,27 +1,38 @@
 const mongoose = require('mongoose')
+const uniqueValidator = require('mongoose-unique-validator')
 
 const url =
-  `mongodb+srv://Lotta:salasana@cluster0-ajiv1.mongodb.net/bloglist-testdb?retryWrites=true`
+  `mongodb+srv://Lotta:Lotta24@test-j7i1t.mongodb.net/bloglist-testdb?retryWrites=true`
 
 mongoose.connect(url, { useNewUrlParser: true })
 
-const blogSchema = mongoose.Schema({
-    title: String,
-    author: String,
-    url: String,
-    likes: Number
+const userSchema = mongoose.Schema({
+    username: {
+      type: String,
+      unique: true
+    },
+    name: String,
+    passwordHash: String,
+    notes: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Blog'
+      }
+    ],
 })
 
-const Blog = mongoose.model('Blog', blogSchema)
+userSchema.plugin(uniqueValidator)
 
-const blog = new Blog({
-    title: 'Blog',
-    author: 'Author',
-    url: 'url',
-    likes: 1
+const User = mongoose.model('User', userSchema)
+
+const user = new User({
+    username: 'username',
+    name: 'name',
+    password: 'password',
+    notes: []
 })
 
-blog.save().then(response => {
+user.save().then(response => {
     console.log('saved to db');
     mongoose.connection.close();
 })
