@@ -16,3 +16,10 @@ Osa1 -tehtävät löytyy kansiosta viikko1.
 Osa2 -tehtävät löytyy kansiosta viikko2.
 * [Kurssitiedot -tehtävä](https://github.com/lottajylha/fullstack/tree/master/viikko2/kurssitiedot)
 * [Puhelinluettelo -tehtävä](https://github.com/lottajylha/fullstack/tree/master/viikko2/puhelinluettelo)
+
+## Osa 3
+Osa3 -tehtävät löytyy omasta repositoriostaan [fullstack-puhelinluettelo](https://github.com/lottajylha/fullstack-puhelinluettelo)
+
+## Osa 4
+Osa4 -tehtävät löytyy kansiosta viikko4.
+* [Blogilista](https://github.com/lottajylha/fullstack/tree/master/viikko4/blogilista)
