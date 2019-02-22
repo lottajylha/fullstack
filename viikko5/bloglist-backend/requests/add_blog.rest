@@ -1,0 +1,7 @@
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImxvdHRhIiwiaWQiOiI1YzZlYmM3MDc0MjUzZjI2Yjg2ZDk1YjAiLCJpYXQiOjE1NTA3NzI1MDh9.uC6qRVBQihSU4q6yvgDjFawQ05s0JxPF05BsEJG2r3c
+
+{
+"title": "Jeejee", "author": "Author", "url": "wwww", "likes": 6
+}
