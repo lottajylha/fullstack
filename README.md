@@ -23,3 +23,8 @@ Osa3 -tehtävät löytyy omasta repositoriostaan [fullstack-puhelinluettelo](htt
 ## Osa 4
 Osa4 -tehtävät löytyy kansiosta viikko4.
 * [Blogilista](https://github.com/lottajylha/fullstack/tree/master/viikko4/blogilista)
+
+## Osa 5
+Osa5 -tehtävät löytyy kansiosta viikko5.
+* [backend](https://github.com/lottajylha/fullstack/tree/master/viikko5/bloglist-backend)
+* [frontend](https://github.com/lottajylha/fullstack/tree/master/viikko5/frontend)
