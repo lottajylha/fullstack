@@ -1,0 +1,9 @@
+PUT http://localhost:3003/api/blogs/5c6a75b4daab1d42142a51bb
+Content-Type: application/json
+
+{
+"title": "Put-toiminto",
+"author": "A",
+"url": "U",
+"likes": 3
+}

@@ -44,16 +44,16 @@ router.post('/', async (request, response) => {
 })
 
 router.put('/:id', async (request, response) => {
-  const { author, title, url,likes } = request.body
+  const { author, title, url, likes } = request.body
 
   const blog = {
     author, title, url, likes,
   }
 
-  const updatedNote = await Blog
+  const updatedBlog = await Blog
     .findByIdAndUpdate(request.params.id, blog, { new: true })
       
-  response.json(updatedNote.toJSON())
+  response.json(updatedBlog.toJSON())
 })
 
 router.delete('/:id', async (request, response) => {
