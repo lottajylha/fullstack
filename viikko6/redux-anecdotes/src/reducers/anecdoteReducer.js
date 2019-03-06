@@ -45,7 +45,7 @@ const sortFunction = (a, b) => {
 const initialState = anecdotesAtStart.map(asObject)
 
 const reducer = (state = initialState, action) => {
-  console.log('action.type: ', action.type, ' action.id: ', action.id)
+  console.log('action.type: ', action.type, ' action.content: ', action.content)
   let newState = state
   switch (action.type) {
     case 'VOTE':
