@@ -7,13 +7,13 @@ const notificationReducer = (state = notificationAtStart, action) => {
       return state
       case 'VOTED':
         state = `you voted '${text}'`
-        setTimeout(() => {
-            state = null
-        }, 10)
         return state
       case 'ADD':
         state = `you added '${text}'`
         return `you added '${text}'`
+      case 'REMOVE':
+        state = null
+        return state
       default:
         return state
     }
@@ -37,6 +37,12 @@ export const notificationForAdd = content => {
     return {
         type: 'ADD',
         content,
+    }
+}
+
+export const removeNotification = () => {
+    return {
+        type: 'REMOVE'
     }
 }
 
