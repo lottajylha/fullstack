@@ -10,7 +10,7 @@ const notificationReducer = (state = notificationAtStart, action) => {
         return state
       case 'ADD':
         state = `you added '${text}'`
-        return `you added '${text}'`
+        return state
       case 'REMOVE':
         state = null
         return state

@@ -5,8 +5,6 @@ import { connect } from 'react-redux'
 
 const Anecdotes = (props) => {
     
-    
-  
     const vote = (id) => {
         props.voteAnecdote(id)
         let voted = props.anecdotes.filter(anecdote => anecdote.id === id)
