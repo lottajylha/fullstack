@@ -28,7 +28,7 @@ export const addAnecdote = content => {
     type: 'NEW_ANECDOTE',
     data: {
       content : content,
-      id: getId(),
+      //id: getId(),
       votes: 0
     }
   }

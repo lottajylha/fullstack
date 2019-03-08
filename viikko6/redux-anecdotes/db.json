@@ -1,34 +1,137 @@
 {
-    "anecdotes":[
-      {
-        "content": "If it hurts, do it more often",
-        "id": "47145",
-        "votes": 0
-      },
-      {
-        "content": "Adding manpower to a late software project makes it later!",
-        "id": "21149",
-        "votes": 0
-      },
-      {
-        "content": "The first 90 percent of the code accounts for the first 90 percent of the development time...The remaining 10 percent of the code accounts for the other 90 percent of the development time.",
-        "id": "69581",
-        "votes": 0
-      },
-      {
-        "content": "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.",
-        "id": "36975",
-        "votes": 0
-      },
-      {
-        "content": "Premature optimization is the root of all evil.",
-        "id": "25170",
-        "votes": 0
-      },
-      {
-        "content": "Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.",
-        "id": "98312",
-        "votes": 0
-      }
-    ]
-  }
+  "anecdotes": [
+    {
+      "content": "If it hurts, do it more often",
+      "id": "47145",
+      "votes": 0
+    },
+    {
+      "content": "Adding manpower to a late software project makes it later!",
+      "id": "21149",
+      "votes": 0
+    },
+    {
+      "content": "The first 90 percent of the code accounts for the first 90 percent of the development time...The remaining 10 percent of the code accounts for the other 90 percent of the development time.",
+      "id": "69581",
+      "votes": 0
+    },
+    {
+      "content": "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.",
+      "id": "36975",
+      "votes": 0
+    },
+    {
+      "content": "Premature optimization is the root of all evil.",
+      "id": "25170",
+      "votes": 0
+    },
+    {
+      "content": "Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.",
+      "id": "98312",
+      "votes": 0
+    },
+    {
+      "content": "New anecdote",
+      "votes": 0,
+      "id": "09GTuwg"
+    },
+    {
+      "content": "New anecdote",
+      "votes": 0,
+      "id": "Kr8loiO"
+    },
+    {
+      "content": "New anecdote",
+      "votes": 0,
+      "id": "gzm3K2U"
+    },
+    {
+      "content": "New anecdote",
+      "votes": 0,
+      "id": "XCC8nn7"
+    },
+    {
+      "content": "New",
+      "votes": 0,
+      "id": "-Y9KI9C"
+    },
+    {
+      "votes": 0,
+      "id": "izyCQRJ"
+    },
+    {
+      "votes": 0,
+      "id": "q1ThW-6"
+    },
+    {
+      "content": "A",
+      "votes": 0,
+      "id": "MeTNgsx"
+    },
+    {
+      "content": "sss",
+      "votes": 0,
+      "id": "bRZxJl5"
+    },
+    {
+      "content": "dfff",
+      "votes": 0,
+      "id": "pBa0to3"
+    },
+    {
+      "content": "A",
+      "votes": 0,
+      "id": "G5Q8Tbw"
+    },
+    {
+      "content": "New anecdote",
+      "votes": 0,
+      "id": "k6_rKlj"
+    },
+    {
+      "content": "A",
+      "votes": 0,
+      "id": "k9SPFY2"
+    },
+    {
+      "content": "New anecdote",
+      "votes": 0,
+      "id": "YV1z6Cm"
+    },
+    {
+      "content": "New anecdote",
+      "votes": 0,
+      "id": "LtO-NJ-"
+    },
+    {
+      "content": "EE",
+      "votes": 0,
+      "id": "ySxrFAO"
+    },
+    {
+      "content": "yyy",
+      "votes": 0,
+      "id": "IXdDOkW"
+    },
+    {
+      "content": "hhhh",
+      "votes": 0,
+      "id": "bLAzycb"
+    },
+    {
+      "content": "e",
+      "votes": 0,
+      "id": "dwoMqCb"
+    },
+    {
+      "content": "New anecdote",
+      "votes": 0,
+      "id": "IDLhOg7"
+    },
+    {
+      "content": "I",
+      "votes": 0,
+      "id": "-WZE1fj"
+    }
+  ]
+}

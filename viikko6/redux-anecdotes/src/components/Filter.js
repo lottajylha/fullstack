@@ -3,8 +3,8 @@ import { filterChange } from '../reducers/filterReducer'
 import { connect } from 'react-redux'
 
 const Filter = (props) => {
-  const handleChange = (event) => {
-    props.filterChange(event.target.value)
+  const handleChange = async (event) => {
+    props.filterChange(event)
   }
   const style = {
     marginBottom: 10
@@ -12,7 +12,7 @@ const Filter = (props) => {
 
   return (
     <div style={style}>
-      filter <input onChange={handleChange} />
+      filter <input onChange={event => handleChange(event.target.value)} />
     </div>
   )
 }

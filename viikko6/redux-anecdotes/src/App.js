@@ -7,7 +7,13 @@ import Filter from './components/Filter'
 import anecdotes from './services/anecdotes'
 import { initialize } from './reducers/anecdoteReducer'
 
-const App = () => {
+const App = (props) => {
+
+  useEffect(() => {
+    anecdotes
+      .getAll().then(anecdotes => props.initialize(anecdotes))
+  },[])
+
   
   return (
     <div>
@@ -19,4 +25,4 @@ const App = () => {
   )
 }
 
-export default App
+export default connect(null, { initialize })(App)

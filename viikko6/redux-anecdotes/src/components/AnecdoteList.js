@@ -4,7 +4,7 @@ import { notificationForVote, removeNotification } from '../reducers/notificatio
 import { connect } from 'react-redux'
 
 const Anecdotes = (props) => {
-    
+
     const vote = (id) => {
         props.voteAnecdote(id)
         let voted = props.anecdotes.filter(anecdote => anecdote.id === id)
@@ -16,38 +16,39 @@ const Anecdotes = (props) => {
         }, 5000)
     }
 
+    console.log('props', props)
     return (
         <div>
             <h2>Anecdotes</h2>
-            {props.anecdotes.map(anecdote =>
+            {props.anecdotes.map(anecdote => (
                 <div key={anecdote.id}>
-                <div>
-                    {anecdote.content}
-                </div>
-                <div>
-                    has {anecdote.votes}
-                    <button onClick={() => vote(anecdote.id)}>vote</button>
-                </div>
-                </div>
+                    <div>
+                        {anecdote.content}
+                    </div>
+                    <div>
+                        has {anecdote.votes}
+                        <button onClick={() => vote(anecdote.id)}>vote</button>
+                    </div>
+                </div>)
             )}
         </div>
     )
 }
 
-const anecdotesToShow = ({anecdotes, filter}) => {
-    /*console.log('filter: ', store.getState().filter)
-    console.log('filter.action: ', store.getState().filter.action)*/
-    if ( filter === 'ALL' ) {
+const anecdotesToShow = ({ anecdotes, filter }) => {
+    console.log('filter: ', filter)
+    /*console.log('filter.action: ', store.getState().filter.action)*/
+    if (filter === 'ALL') {
         return anecdotes
     } else {
-        const show = anecdotes.filter(a => a.content.includes(filter))
+        const show = anecdotes.filter(a => JSON.stringify(a).includes(filter))
         return show
     }
 }
 
 const mapStateToProps = (state) => {
     return {
-      anecdotes : anecdotesToShow(state),
+        anecdotes: anecdotesToShow(state),
     }
 }
 
