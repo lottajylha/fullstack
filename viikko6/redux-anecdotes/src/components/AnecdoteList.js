@@ -2,21 +2,25 @@ import React from 'react'
 import { voteAnecdote } from '../reducers/anecdoteReducer'
 import { notificationForVote, removeNotification } from '../reducers/notificationReducer'
 import { connect } from 'react-redux'
+import anecdotes from '../services/anecdotes'
 
 const Anecdotes = (props) => {
 
     const vote = (id) => {
         props.voteAnecdote(id)
-        let voted = props.anecdotes.filter(anecdote => anecdote.id === id)
-        voted = voted.map(a => a.content)
-        console.log('content: ', voted)
-        props.notificationForVote(voted)
+        const anecdote = props.anecdotes.find(anecdote => anecdote.id === id)
+        const votedAnecdote = {
+            content: anecdote.content,
+            votes: anecdote.votes + 1,
+            id: anecdote.id
+        }
+        anecdotes.update(votedAnecdote)
+        props.notificationForVote(anecdote.content)
         setTimeout(() => {
             props.removeNotification()
         }, 5000)
     }
 
-    console.log('props', props)
     return (
         <div>
             <h2>Anecdotes</h2>
@@ -36,8 +40,6 @@ const Anecdotes = (props) => {
 }
 
 const anecdotesToShow = ({ anecdotes, filter }) => {
-    console.log('filter: ', filter)
-    /*console.log('filter.action: ', store.getState().filter.action)*/
     if (filter === 'ALL') {
         return anecdotes
     } else {

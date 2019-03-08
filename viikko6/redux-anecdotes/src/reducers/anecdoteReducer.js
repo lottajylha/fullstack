@@ -52,7 +52,6 @@ const sortFunction = (a, b) => {
 }
 
 const reducer = (state = [], action) => {
-  console.log('action.type: ', action.type, ' action.content: ', action.content)
   let newState = state
   switch (action.type) {
     case 'VOTE':
